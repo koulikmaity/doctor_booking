@@ -2,9 +2,11 @@ package com.km.doctorbooking.service;
 
 import com.km.doctorbooking.entity.Appointment;
 import com.km.doctorbooking.entity.Doctor;
+import com.km.doctorbooking.entity.DoctorSlot;
 import com.km.doctorbooking.entity.User;
 import com.km.doctorbooking.repository.AppointmentRepository;
 import com.km.doctorbooking.repository.DoctorRepository;
+import com.km.doctorbooking.repository.DoctorSlotRepository;
 import com.km.doctorbooking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -31,131 +33,110 @@ public class AppointmentService {
     @Autowired
     private UserRepository userRepo;
 
-    // 🔥 1. Book Appointment
-//    public Appointment bookAppointment(Long userId, Long doctorId,
-//                                       String date, String timeSlot) {
-//
-//        // ✅ Validate slot availability
-//        boolean exists = appointmentRepo
-//                .existsByDoctorIdAndAppointmentDateAndTimeSlot(
-//                        doctorId, date, timeSlot);
-//
-//        if (exists) {
-//            throw new ResponseStatusException(
-//                    HttpStatus.BAD_REQUEST,
-//                    "Slot already booked ❌"
-//            );
-//        }
-//
-//        // ✅ Fetch User
-//        User user = userRepo.findById(userId)
-//                .orElseThrow(() -> new ResponseStatusException(
-//                        HttpStatus.NOT_FOUND, "User not found"));
-//
-//        // ✅ Fetch Doctor
-//        Doctor doctor = doctorRepo.findById(doctorId)
-//                .orElseThrow(() -> new ResponseStatusException(
-//                        HttpStatus.NOT_FOUND, "Doctor not found"));
-//
-//        try {
-//            // ✅ Create Appointment
-//            Appointment appointment = new Appointment();
-//            appointment.setAppointmentDate(date);
-//            appointment.setTimeSlot(timeSlot);
-//            appointment.setStatus("BOOKED");
-//            appointment.setUser(user);
-//            appointment.setDoctor(doctor);
-//
-//            return appointmentRepo.save(appointment);
-//        } catch (DataIntegrityViolationException ex) {
-//            System.out.println("Duplicate slot error: " + ex.getMessage());
-//
-//            throw new ResponseStatusException(
-//                    HttpStatus.BAD_REQUEST,
-//                    "This slot is already booked ❌"
-//            );
-//        }
-//    }
+    @Autowired
+    private DoctorSlotRepository doctorSlotRepo;
+
+    // ✅ MAX PATIENTS PER SLOT
+    private static final int MAX_PATIENTS_PER_SLOT = 3;
 
 
 
+public Appointment bookAppointment(Long userId, Long doctorId,
+                                   LocalDate date, LocalTime timeSlot) {
 
+    try {
 
-    public Appointment bookAppointment(Long userId, Long doctorId,
-                                       LocalDate date, LocalTime timeSlot) {
-
-        try {
-
-//            // 🔥 VALIDATION 1: minute range
-//            if (timeSlot.getMinute() > 59) {
-//                throw new ResponseStatusException(
-//                        HttpStatus.BAD_REQUEST,
-//                        "Invalid time slot ❌"
-//                );
-//            }
-
-            // 🔥 VALIDATION 2: enforce 10-min slots (optional)
-            if (timeSlot.getMinute() % 10 != 0) {
-                throw new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Slot must be in 10 min interval (10:00, 10:10...) ❌"
-                );
-            }
-
-            // 🔥 VALIDATION 3: doctor timing (important)
-            Doctor doctor = doctorRepo.findById(doctorId)
-                    .orElseThrow(() -> new ResponseStatusException(
-                            HttpStatus.NOT_FOUND, "Doctor not found"));
-
-            LocalTime start = LocalTime.parse(doctor.getAvailableFrom());
-            LocalTime end = LocalTime.parse(doctor.getAvailableTo());
-
-            if (timeSlot.isBefore(start) || timeSlot.isAfter(end)) {
-                throw new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Slot outside doctor availability ❌"
-                );
-            }
-
-            // ✅ Check already booked
-            boolean exists = appointmentRepo
-                    .existsByDoctorIdAndAppointmentDateAndTimeSlot(
-                            doctorId, date, timeSlot);
-
-            if (exists) {
-                throw new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Slot already booked ❌"
-                );
-            }
-
-            // ✅ Fetch user
-            User user = userRepo.findById(userId)
-                    .orElseThrow(() -> new ResponseStatusException(
-                            HttpStatus.NOT_FOUND, "User not found"));
-
-            // ✅ Save
-            Appointment appointment = new Appointment();
-            appointment.setAppointmentDate(date);
-            appointment.setTimeSlot(timeSlot);
-            appointment.setStatus("BOOKED");
-            appointment.setUser(user);
-            appointment.setDoctor(doctor);
-
-            return appointmentRepo.save(appointment);
-
-        } catch (ResponseStatusException ex) {
-            throw ex;
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        if (date == null || timeSlot == null) {
             throw new ResponseStatusException(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Something went wrong ❌"
+                    HttpStatus.BAD_REQUEST,
+                    "Date and time are required ❌"
             );
         }
-    }
 
+        Doctor doctor = doctorRepo.findById(doctorId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Doctor not found"));
+
+        LocalDate today = LocalDate.now();
+        LocalTime now = LocalTime.now();
+
+        if (date.isBefore(today)) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Cannot book past date ❌"
+            );
+        }
+
+        if (date.equals(today) && timeSlot.isBefore(now)) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Cannot book past time ❌"
+            );
+        }
+
+        LocalTime start = LocalTime.parse(doctor.getAvailableFrom());
+        LocalTime end = LocalTime.parse(doctor.getAvailableTo());
+
+        if (timeSlot.isBefore(start) || !timeSlot.isBefore(end)) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Slot outside doctor availability ❌"
+            );
+        }
+
+
+        // ✅ Step 1: Check if slot exists
+        DoctorSlot slot = doctorSlotRepo
+                .findByDoctorIdAndAppointmentDateAndTimeSlot(doctorId, date, timeSlot)
+                .orElseGet(() -> {
+                    DoctorSlot newSlot = new DoctorSlot();
+                    newSlot.setDoctor(doctor);
+                    newSlot.setAppointmentDate(date);
+                    newSlot.setTimeSlot(timeSlot);
+                    newSlot.setMaxCapacity(MAX_PATIENTS_PER_SLOT);
+                    newSlot.setBookedCount(0);
+                    return doctorSlotRepo.save(newSlot);
+                });
+
+        int updated = appointmentRepo.incrementSlot(doctorId, date, timeSlot);
+
+        if (updated == 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Slot full ❌");
+        }
+
+
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "User not found"));
+
+        Appointment appointment = new Appointment();
+        appointment.setAppointmentDate(date);
+        appointment.setTimeSlot(timeSlot);
+        appointment.setStatus("BOOKED");
+        appointment.setUser(user);
+        appointment.setDoctor(doctor);
+
+        Appointment saved = appointmentRepo.save(appointment);
+
+        return saved;
+
+    } catch (DataIntegrityViolationException ex) {
+        throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "User already booked this slot ❌"
+        );
+
+    } catch (ResponseStatusException ex) {
+        throw ex;
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        throw new ResponseStatusException(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                "Something went wrong ❌"
+        );
+    }
+}
 
 
     // 📄 2. Get all appointments
@@ -187,6 +168,16 @@ public class AppointmentService {
 
         if ("CANCELLED".equals(appointment.getStatus())) {
             throw new RuntimeException("Appointment already cancelled");
+        }
+
+        // 🔥 ATOMIC SLOT DECREMENT
+        // 🔥 ONLY decrement if it was BOOKED
+        if ("BOOKED".equals(appointment.getStatus())) {
+            appointmentRepo.decrementSlot(
+                    appointment.getDoctor().getId(),
+                    appointment.getAppointmentDate(),
+                    appointment.getTimeSlot()
+            );
         }
 
         appointment.setStatus("CANCELLED");

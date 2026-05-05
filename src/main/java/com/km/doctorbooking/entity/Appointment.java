@@ -11,11 +11,7 @@ import java.time.LocalTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(
-        uniqueConstraints = @UniqueConstraint(
-                columnNames = {"doctor_id", "appointment_date", "time_slot"}
-        )
-)
+
 public class Appointment {
 
     @Id
@@ -28,7 +24,7 @@ public class Appointment {
     @Column(name = "time_slot", nullable = false)
     private LocalTime timeSlot;
 
-    private String status;
+    private String status; // BOOKED, CANCELLED, COMPLETED
 
     @ManyToOne
     @JoinColumn(name = "user_id")

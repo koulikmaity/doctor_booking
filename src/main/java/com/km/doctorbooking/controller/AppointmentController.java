@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/api/appointments")
@@ -75,8 +77,6 @@ public class AppointmentController {
     @GetMapping("/doctor/{doctorId}/date/{date}")
     public List<String> getBookedSlots(
 
-//            @PathVariable("doctorId") Long doctorId,
-//            @PathVariable("date") String date) {
             @PathVariable Long doctorId,
             @PathVariable LocalDate date) {
 
@@ -95,7 +95,7 @@ public class AppointmentController {
             return list.stream()
                     .map(Appointment::getTimeSlot)
                     .filter(Objects::nonNull)
-                    .map(time->time.toString())
+                    .map(LocalTime:: toString)
                     .collect(Collectors.toList());
 
     }
