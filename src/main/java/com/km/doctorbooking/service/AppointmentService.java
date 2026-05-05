@@ -166,18 +166,27 @@ public Appointment bookAppointment(Long userId, Long doctorId,
         Appointment appointment = appointmentRepo.findById(appointmentId)
                 .orElseThrow(() -> new RuntimeException("Appointment not found"));
 
+        // ❌ already cancelled
         if ("CANCELLED".equals(appointment.getStatus())) {
-            throw new RuntimeException("Appointment already cancelled");
+            throw new RuntimeException("Already cancelled");
         }
 
-        // 🔥 ATOMIC SLOT DECREMENT
-        // 🔥 ONLY decrement if it was BOOKED
+        // ✅ only decrement if it was booked
         if ("BOOKED".equals(appointment.getStatus())) {
-            appointmentRepo.decrementSlot(
-                    appointment.getDoctor().getId(),
-                    appointment.getAppointmentDate(),
-                    appointment.getTimeSlot()
-            );
+
+            DoctorSlot slot = doctorSlotRepo
+                    .findByDoctorIdAndAppointmentDateAndTimeSlot(
+                            appointment.getDoctor().getId(),
+                            appointment.getAppointmentDate(),
+                            appointment.getTimeSlot()
+                    )
+                    .orElseThrow(() -> new RuntimeException("Slot not found"));
+
+            // ✅ safe decrement
+            if (slot.getBookedCount() > 0) {
+                slot.setBookedCount(slot.getBookedCount() - 1);
+                doctorSlotRepo.save(slot);
+            }
         }
 
         appointment.setStatus("CANCELLED");
