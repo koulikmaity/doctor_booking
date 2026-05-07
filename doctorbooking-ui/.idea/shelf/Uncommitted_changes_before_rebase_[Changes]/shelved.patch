@@ -1,0 +1,853 @@
+Index: src/App.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import logo from './logo.svg';\nimport './App.css';\n\nfunction App() {\n  return (\n    <div className=\"App\">\n      <header className=\"App-header\">\n        <img src={logo} className=\"App-logo\" alt=\"logo\" />\n        <p>\n          Edit <code>src/App.js</code> and save to reload.\n        </p>\n        <a\n          className=\"App-link\"\n          href=\"https://reactjs.org\"\n          target=\"_blank\"\n          rel=\"noopener noreferrer\"\n        >\n          Learn React\n        </a>\n      </header>\n    </div>\n  );\n}\n\nexport default App;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App.js b/src/App.js
+--- a/src/App.js	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
++++ b/src/App.js	(date 1778165412054)
+@@ -1,25 +1,92 @@
+-import logo from './logo.svg';
+-import './App.css';
++// import React from "react";
++// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
++
++// import Navbar from "./components/Navbar";
++// import Login from "./pages/Login";
++// import Register from "./pages/Register";
++// import DoctorList from "./pages/DoctorList";
++// import BookAppointment from "./pages/BookAppointment";
++// import MyAppointments from "./pages/MyAppointments";
++// import AddDoctor from "./pages/AddDoctor";
++// import Footer from "./components/Footer";
++
++// function App() {
++//   return (
++//     <Router>
++//       <Navbar />
++//       <Routes>
++//         <Route path="/" element={<DoctorList />} />
++//         <Route path="/login" element={<Login />} />
++//         <Route path="/register" element={<Register />} />
++//         <Route path="/book/:doctorId" element={<BookAppointment />} />
++//         <Route path="/appointments" element={<MyAppointments />} />
++//         <Route path="/add-doctor" element={<AddDoctor />} />
++//       </Routes>
++//       <Footer />
++//     </Router>
++//   );
++// }
++
++// export default App;
++
++
++
++
++
++
++
++import React from "react";
++import {
++  BrowserRouter as Router,
++  Routes,
++  Route,
++  useLocation,
++} from "react-router-dom";
++
++import Navbar from "./components/Navbar";
++import Footer from "./components/Footer";
++
++import Login from "./pages/Login";
++import Register from "./pages/Register";
++import DoctorList from "./pages/DoctorList";
++import BookAppointment from "./pages/BookAppointment";
++import MyAppointments from "./pages/MyAppointments";
++import AddDoctor from "./pages/AddDoctor";
++import ExploreDoctors from "./pages/ExploreDoctors";
++
++function Layout() {
++
++  const location = useLocation();
++
++  // ❌ Hide footer on Add Doctor page
++  const hideFooter = location.pathname === "/add-doctor";
++
++  return (
++    <>
++      <Navbar />
++
++      <Routes>
++        <Route path="/" element={<DoctorList />} />
++        <Route path="/login" element={<Login />} />
++        <Route path="/register" element={<Register />} />
++        <Route path="/book/:doctorId" element={<BookAppointment />} />
++        <Route path="/appointments" element={<MyAppointments />} />
++        <Route path="/add-doctor" element={<AddDoctor />} />
++        <Route path="/explore-doctors" element={<ExploreDoctors />} />
++      </Routes>
++
++      {/* ✅ Footer visible everywhere except add-doctor */}
++      {!hideFooter && <Footer />}
++    </>
++  );
++}
+ 
+ function App() {
+   return (
+-    <div className="App">
+-      <header className="App-header">
+-        <img src={logo} className="App-logo" alt="logo" />
+-        <p>
+-          Edit <code>src/App.js</code> and save to reload.
+-        </p>
+-        <a
+-          className="App-link"
+-          href="https://reactjs.org"
+-          target="_blank"
+-          rel="noopener noreferrer"
+-        >
+-          Learn React
+-        </a>
+-      </header>
+-    </div>
++    <Router>
++      <Layout />
++    </Router>
+   );
+ }
+ 
+-export default App;
++export default App;
+\ No newline at end of file
+Index: src/reportWebVitals.js
+===================================================================
+diff --git a/src/reportWebVitals.js b/src/reportWebVitals.js
+deleted file mode 100644
+--- a/src/reportWebVitals.js	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
++++ /dev/null	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
+@@ -1,13 +0,0 @@
+-const reportWebVitals = onPerfEntry => {
+-  if (onPerfEntry && onPerfEntry instanceof Function) {
+-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+-      getCLS(onPerfEntry);
+-      getFID(onPerfEntry);
+-      getFCP(onPerfEntry);
+-      getLCP(onPerfEntry);
+-      getTTFB(onPerfEntry);
+-    });
+-  }
+-};
+-
+-export default reportWebVitals;
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># See https://help.github.com/articles/ignoring-files/ for more about ignoring files.\n\n# dependencies\n/node_modules\n/.pnp\n.pnp.js\n\n# testing\n/coverage\n\n# production\n/build\n\n# misc\n.DS_Store\n.env.local\n.env.development.local\n.env.test.local\n.env.production.local\n\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
++++ b/.gitignore	(date 1777494954181)
+@@ -21,3 +21,11 @@
+ npm-debug.log*
+ yarn-debug.log*
+ yarn-error.log*
++
++# Playwright
++node_modules/
++/test-results/
++/playwright-report/
++/blob-report/
++/playwright/.cache/
++/playwright/.auth/
+Index: src/components/Footer.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/Footer.jsx b/src/components/Footer.jsx
+new file mode 100644
+--- /dev/null	(date 1778166900674)
++++ b/src/components/Footer.jsx	(date 1778166900674)
+@@ -0,0 +1,145 @@
++
++import React from "react";
++import { Link } from "react-router-dom";
++
++function Footer() {
++  return (
++    <footer
++      style={{
++        background: "linear-gradient(to right, #0f172a, #1e293b)",
++        color: "white",
++        marginTop: "50px",
++        padding: "40px 60px",
++      }}
++    >
++      {/* TOP SECTION */}
++      <div
++        style={{
++          display: "flex",
++          justifyContent: "space-between",
++          flexWrap: "wrap",
++          gap: "40px",
++        }}
++      >
++        {/* LEFT */}
++        <div style={{ flex: 1, minWidth: "250px" }}>
++          <h2
++            style={{
++              marginBottom: "15px",
++              color: "#38bdf8",
++            }}
++          >
++            Doctor Booking
++          </h2>
++
++          <p
++            style={{
++              color: "#cbd5e1",
++              lineHeight: "1.8",
++            }}
++          >
++            Book appointments with experienced doctors quickly and
++            easily. Manage appointments, cancellations, and schedules
++            in one place.
++          </p>
++        </div>
++
++        {/* CENTER */}
++        <div style={{ flex: 1, minWidth: "200px" }}>
++          <h3 style={{ marginBottom: "15px" }}>Quick Links</h3>
++
++          <div
++            style={{
++              display: "flex",
++              flexDirection: "column",
++              gap: "10px",
++            }}
++          >
++            <Link
++              to="/"
++              style={linkStyle}
++            >
++              Home
++            </Link>
++
++            <Link
++              to="/appointments"
++              style={linkStyle}
++            >
++              My Appointments
++            </Link>
++
++            <Link
++              to="/add-doctor"
++              style={linkStyle}
++            >
++              Add Doctor
++            </Link>
++          </div>
++        </div>
++
++        {/* RIGHT */}
++        <div style={{ flex: 1, minWidth: "250px" }}>
++          <h3 style={{ marginBottom: "15px" }}>Contact</h3>
++
++          <p style={textStyle}>📍 Kolkata, India</p>
++          <p style={textStyle}>📞 +91 9876543210</p>
++          <p style={textStyle}>✉️ support@doctorbooking.com</p>
++        </div>
++      </div>
++
++      {/* ADD DOCTOR BUTTON HORIZONTAL */}
++      <div
++        style={{
++          marginTop: "35px",
++          display: "flex",
++          justifyContent: "center",
++        }}
++      >
++        <Link
++          to="/add-doctor"
++          style={{
++            background: "#38bdf8",
++            color: "#0f172a",
++            padding: "12px 28px",
++            borderRadius: "30px",
++            textDecoration: "none",
++            fontWeight: "bold",
++            fontSize: "16px",
++            transition: "0.3s",
++            boxShadow: "0 4px 15px rgba(56,189,248,0.4)",
++          }}
++        >
++          + Add Doctor
++        </Link>
++      </div>
++
++      {/* BOTTOM */}
++      <div
++        style={{
++          borderTop: "1px solid #334155",
++          marginTop: "30px",
++          paddingTop: "20px",
++          textAlign: "center",
++          color: "#94a3b8",
++          fontSize: "14px",
++        }}
++      >
++        © 2026 Doctor Booking System. All rights reserved.
++      </div>
++    </footer>
++  );
++}
++
++const linkStyle = {
++  color: "#e2e8f0",
++  textDecoration: "none",
++  fontSize: "15px",
++};
++
++const textStyle = {
++  color: "#cbd5e1",
++  marginBottom: "10px",
++};
++
++export default Footer;
+\ No newline at end of file
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"name\": \"doctorbooking-ui\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"dependencies\": {\n    \"@testing-library/dom\": \"^10.4.1\",\n    \"@testing-library/jest-dom\": \"^6.9.1\",\n    \"@testing-library/react\": \"^16.3.2\",\n    \"@testing-library/user-event\": \"^13.5.0\",\n    \"react\": \"^19.2.4\",\n    \"react-dom\": \"^19.2.4\",\n    \"react-scripts\": \"5.0.1\",\n    \"web-vitals\": \"^2.1.4\"\n  },\n  \"scripts\": {\n    \"start\": \"react-scripts start\",\n    \"build\": \"react-scripts build\",\n    \"test\": \"react-scripts test\",\n    \"eject\": \"react-scripts eject\"\n  },\n  \"eslintConfig\": {\n    \"extends\": [\n      \"react-app\",\n      \"react-app/jest\"\n    ]\n  },\n  \"browserslist\": {\n    \"production\": [\n      \">0.2%\",\n      \"not dead\",\n      \"not op_mini all\"\n    ],\n    \"development\": [\n      \"last 1 chrome version\",\n      \"last 1 firefox version\",\n      \"last 1 safari version\"\n    ]\n  }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
++++ b/package.json	(date 1777494954181)
+@@ -7,8 +7,10 @@
+     "@testing-library/jest-dom": "^6.9.1",
+     "@testing-library/react": "^16.3.2",
+     "@testing-library/user-event": "^13.5.0",
++    "axios": "^1.14.0",
+     "react": "^19.2.4",
+     "react-dom": "^19.2.4",
++    "react-router-dom": "^7.14.0",
+     "react-scripts": "5.0.1",
+     "web-vitals": "^2.1.4"
+   },
+@@ -35,5 +37,9 @@
+       "last 1 firefox version",
+       "last 1 safari version"
+     ]
++  },
++  "devDependencies": {
++    "@playwright/test": "^1.59.1",
++    "@types/node": "^25.6.0"
+   }
+ }
+Index: package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package-lock.json b/package-lock.json
+--- a/package-lock.json	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
++++ b/package-lock.json	(date 1777494953891)
+@@ -12,10 +12,16 @@
+         "@testing-library/jest-dom": "^6.9.1",
+         "@testing-library/react": "^16.3.2",
+         "@testing-library/user-event": "^13.5.0",
++        "axios": "^1.14.0",
+         "react": "^19.2.4",
+         "react-dom": "^19.2.4",
++        "react-router-dom": "^7.14.0",
+         "react-scripts": "5.0.1",
+         "web-vitals": "^2.1.4"
++      },
++      "devDependencies": {
++        "@playwright/test": "^1.59.1",
++        "@types/node": "^25.6.0"
+       }
+     },
+     "node_modules/@adobe/css-tools": {
+@@ -2937,6 +2943,22 @@
+         "node": ">= 8"
+       }
+     },
++    "node_modules/@playwright/test": {
++      "version": "1.59.1",
++      "resolved": "https://registry.npmjs.org/@playwright/test/-/test-1.59.1.tgz",
++      "integrity": "sha512-PG6q63nQg5c9rIi4/Z5lR5IVF7yU5MqmKaPOe0HSc0O2cX1fPi96sUQu5j7eo4gKCkB2AnNGoWt7y4/Xx3Kcqg==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "playwright": "1.59.1"
++      },
++      "bin": {
++        "playwright": "cli.js"
++      },
++      "engines": {
++        "node": ">=18"
++      }
++    },
+     "node_modules/@pmmmwh/react-refresh-webpack-plugin": {
+       "version": "0.5.17",
+       "resolved": "https://registry.npmjs.org/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.17.tgz",
+@@ -3658,12 +3680,12 @@
+       "license": "MIT"
+     },
+     "node_modules/@types/node": {
+-      "version": "25.5.2",
+-      "resolved": "https://registry.npmjs.org/@types/node/-/node-25.5.2.tgz",
+-      "integrity": "sha512-tO4ZIRKNC+MDWV4qKVZe3Ql/woTnmHDr5JD8UI5hn2pwBrHEwOEMZK7WlNb5RKB6EoJ02gwmQS9OrjuFnZYdpg==",
++      "version": "25.6.0",
++      "resolved": "https://registry.npmjs.org/@types/node/-/node-25.6.0.tgz",
++      "integrity": "sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==",
+       "license": "MIT",
+       "dependencies": {
+-        "undici-types": "~7.18.0"
++        "undici-types": "~7.19.0"
+       }
+     },
+     "node_modules/@types/node-forge": {
+@@ -4803,6 +4825,33 @@
+         "node": ">=4"
+       }
+     },
++    "node_modules/axios": {
++      "version": "1.14.0",
++      "resolved": "https://registry.npmjs.org/axios/-/axios-1.14.0.tgz",
++      "integrity": "sha512-3Y8yrqLSwjuzpXuZ0oIYZ/XGgLwUIBU3uLvbcpb0pidD9ctpShJd43KSlEEkVQg6DS0G9NKyzOvBfUtDKEyHvQ==",
++      "license": "MIT",
++      "dependencies": {
++        "follow-redirects": "^1.15.11",
++        "form-data": "^4.0.5",
++        "proxy-from-env": "^2.1.0"
++      }
++    },
++    "node_modules/axios/node_modules/form-data": {
++      "version": "4.0.5",
++      "resolved": "https://registry.npmjs.org/form-data/-/form-data-4.0.5.tgz",
++      "integrity": "sha512-8RipRLol37bNs2bhoV67fiTEvdTrbMUYcFTiy3+wuuOnUog2QBHCZWXDRijWQfAkhBj2Uf5UnVaiWwA5vdd82w==",
++      "license": "MIT",
++      "dependencies": {
++        "asynckit": "^0.4.0",
++        "combined-stream": "^1.0.8",
++        "es-set-tostringtag": "^2.1.0",
++        "hasown": "^2.0.2",
++        "mime-types": "^2.1.12"
++      },
++      "engines": {
++        "node": ">= 6"
++      }
++    },
+     "node_modules/axobject-query": {
+       "version": "4.1.0",
+       "resolved": "https://registry.npmjs.org/axobject-query/-/axobject-query-4.1.0.tgz",
+@@ -12074,6 +12123,53 @@
+         "node": ">=4"
+       }
+     },
++    "node_modules/playwright": {
++      "version": "1.59.1",
++      "resolved": "https://registry.npmjs.org/playwright/-/playwright-1.59.1.tgz",
++      "integrity": "sha512-C8oWjPR3F81yljW9o5OxcWzfh6avkVwDD2VYdwIGqTkl+OGFISgypqzfu7dOe4QNLL2aqcWBmI3PMtLIK233lw==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "dependencies": {
++        "playwright-core": "1.59.1"
++      },
++      "bin": {
++        "playwright": "cli.js"
++      },
++      "engines": {
++        "node": ">=18"
++      },
++      "optionalDependencies": {
++        "fsevents": "2.3.2"
++      }
++    },
++    "node_modules/playwright-core": {
++      "version": "1.59.1",
++      "resolved": "https://registry.npmjs.org/playwright-core/-/playwright-core-1.59.1.tgz",
++      "integrity": "sha512-HBV/RJg81z5BiiZ9yPzIiClYV/QMsDCKUyogwH9p3MCP6IYjUFu/MActgYAvK0oWyV9NlwM3GLBjADyWgydVyg==",
++      "dev": true,
++      "license": "Apache-2.0",
++      "bin": {
++        "playwright-core": "cli.js"
++      },
++      "engines": {
++        "node": ">=18"
++      }
++    },
++    "node_modules/playwright/node_modules/fsevents": {
++      "version": "2.3.2",
++      "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz",
++      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==",
++      "dev": true,
++      "hasInstallScript": true,
++      "license": "MIT",
++      "optional": true,
++      "os": [
++        "darwin"
++      ],
++      "engines": {
++        "node": "^8.16.0 || ^10.6.0 || >=11.0.0"
++      }
++    },
+     "node_modules/possible-typed-array-names": {
+       "version": "1.1.0",
+       "resolved": "https://registry.npmjs.org/possible-typed-array-names/-/possible-typed-array-names-1.1.0.tgz",
+@@ -13472,6 +13568,15 @@
+         "node": ">= 0.10"
+       }
+     },
++    "node_modules/proxy-from-env": {
++      "version": "2.1.0",
++      "resolved": "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-2.1.0.tgz",
++      "integrity": "sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=10"
++      }
++    },
+     "node_modules/psl": {
+       "version": "1.15.0",
+       "resolved": "https://registry.npmjs.org/psl/-/psl-1.15.0.tgz",
+@@ -13763,6 +13868,57 @@
+         "node": ">=0.10.0"
+       }
+     },
++    "node_modules/react-router": {
++      "version": "7.14.0",
++      "resolved": "https://registry.npmjs.org/react-router/-/react-router-7.14.0.tgz",
++      "integrity": "sha512-m/xR9N4LQLmAS0ZhkY2nkPA1N7gQ5TUVa5n8TgANuDTARbn1gt+zLPXEm7W0XDTbrQ2AJSJKhoa6yx1D8BcpxQ==",
++      "license": "MIT",
++      "dependencies": {
++        "cookie": "^1.0.1",
++        "set-cookie-parser": "^2.6.0"
++      },
++      "engines": {
++        "node": ">=20.0.0"
++      },
++      "peerDependencies": {
++        "react": ">=18",
++        "react-dom": ">=18"
++      },
++      "peerDependenciesMeta": {
++        "react-dom": {
++          "optional": true
++        }
++      }
++    },
++    "node_modules/react-router-dom": {
++      "version": "7.14.0",
++      "resolved": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-7.14.0.tgz",
++      "integrity": "sha512-2G3ajSVSZMEtmTjIklRWlNvo8wICEpLihfD/0YMDxbWK2UyP5EGfnoIn9AIQGnF3G/FX0MRbHXdFcD+rL1ZreQ==",
++      "license": "MIT",
++      "dependencies": {
++        "react-router": "7.14.0"
++      },
++      "engines": {
++        "node": ">=20.0.0"
++      },
++      "peerDependencies": {
++        "react": ">=18",
++        "react-dom": ">=18"
++      }
++    },
++    "node_modules/react-router/node_modules/cookie": {
++      "version": "1.1.1",
++      "resolved": "https://registry.npmjs.org/cookie/-/cookie-1.1.1.tgz",
++      "integrity": "sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==",
++      "license": "MIT",
++      "engines": {
++        "node": ">=18"
++      },
++      "funding": {
++        "type": "opencollective",
++        "url": "https://opencollective.com/express"
++      }
++    },
+     "node_modules/react-scripts": {
+       "version": "5.0.1",
+       "resolved": "https://registry.npmjs.org/react-scripts/-/react-scripts-5.0.1.tgz",
+@@ -14641,6 +14797,12 @@
+         "node": ">= 0.8.0"
+       }
+     },
++    "node_modules/set-cookie-parser": {
++      "version": "2.7.2",
++      "resolved": "https://registry.npmjs.org/set-cookie-parser/-/set-cookie-parser-2.7.2.tgz",
++      "integrity": "sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==",
++      "license": "MIT"
++    },
+     "node_modules/set-function-length": {
+       "version": "1.2.2",
+       "resolved": "https://registry.npmjs.org/set-function-length/-/set-function-length-1.2.2.tgz",
+@@ -16138,9 +16300,9 @@
+       "license": "MIT"
+     },
+     "node_modules/undici-types": {
+-      "version": "7.18.2",
+-      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-7.18.2.tgz",
+-      "integrity": "sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==",
++      "version": "7.19.2",
++      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-7.19.2.tgz",
++      "integrity": "sha512-qYVnV5OEm2AW8cJMCpdV20CDyaN3g0AjDlOGf1OW4iaDEx8MwdtChUp4zu4H0VP3nDRF/8RKWH+IPp9uW0YGZg==",
+       "license": "MIT"
+     },
+     "node_modules/unicode-canonical-property-names-ecmascript": {
+Index: src/index.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport './index.css';\nimport App from './App';\nimport reportWebVitals from './reportWebVitals';\n\nconst root = ReactDOM.createRoot(document.getElementById('root'));\nroot.render(\n  <React.StrictMode>\n    <App />\n  </React.StrictMode>\n);\n\n// If you want to start measuring performance in your app, pass a function\n// to log results (for example: reportWebVitals(console.log))\n// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals\nreportWebVitals();\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/index.js b/src/index.js
+--- a/src/index.js	(revision 1d2d8169a76bbec6ee9d8be9dd16ab4676a44204)
++++ b/src/index.js	(date 1778154896095)
+@@ -2,7 +2,6 @@
+ import ReactDOM from 'react-dom/client';
+ import './index.css';
+ import App from './App';
+-import reportWebVitals from './reportWebVitals';
+ 
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(
+@@ -14,4 +13,4 @@
+ // If you want to start measuring performance in your app, pass a function
+ // to log results (for example: reportWebVitals(console.log))
+ // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+-reportWebVitals();
++
+Index: src/pages/AddDoctor.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/AddDoctor.jsx b/src/pages/AddDoctor.jsx
+new file mode 100644
+--- /dev/null	(date 1778158726184)
++++ b/src/pages/AddDoctor.jsx	(date 1778158726184)
+@@ -0,0 +1,213 @@
++import React, { useState } from "react";
++import { addDoctor } from "../services/doctorService";
++
++function AddDoctor() {
++
++  const [doctor, setDoctor] = useState({
++    name: "",
++    specialization: "",
++    experience: "",
++    availableFrom: "",
++    availableTo: "",
++    imageUrl: "",
++  });
++
++  const handleChange = (e) => {
++    setDoctor({
++      ...doctor,
++      [e.target.name]: e.target.value,
++    });
++  };
++
++  const handleSubmit = async (e) => {
++
++    e.preventDefault();
++
++    try {
++
++      await addDoctor(doctor);
++
++      alert("Doctor Added Successfully ✅");
++
++      setDoctor({
++        name: "",
++        specialization: "",
++        experience: "",
++        availableFrom: "",
++        availableTo: "",
++        imageUrl: "",
++      });
++
++    } catch (err) {
++
++      console.error(err);
++
++      alert("Failed to add doctor ❌");
++    }
++  };
++
++  return (
++    <div
++      style={{
++        minHeight: "100vh",
++        background:
++          "linear-gradient(to right, #e0f2fe, #f8fafc)",
++        display: "flex",
++        justifyContent: "center",
++        alignItems: "center",
++        padding: "40px 20px",
++      }}
++    >
++      <div
++        style={{
++          width: "100%",
++          maxWidth: "550px",
++          background: "#fff",
++          borderRadius: "20px",
++          padding: "35px",
++          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
++        }}
++      >
++        <h2
++          style={{
++            textAlign: "center",
++            marginBottom: "30px",
++            color: "#0f172a",
++            fontSize: "32px",
++          }}
++        >
++          Add Doctor
++        </h2>
++
++        <form onSubmit={handleSubmit}>
++
++          {/* NAME */}
++          <div style={{ marginBottom: "20px" }}>
++            <label style={labelStyle}>Doctor Name</label>
++
++            <input
++              type="text"
++              name="name"
++              value={doctor.name}
++              onChange={handleChange}
++              placeholder="e.g. Dr Raj Sharma"
++              required
++              style={inputStyle}
++            />
++          </div>
++
++          {/* SPECIALIZATION */}
++          <div style={{ marginBottom: "20px" }}>
++            <label style={labelStyle}>Specialization</label>
++
++            <input
++              type="text"
++              name="specialization"
++              value={doctor.specialization}
++              onChange={handleChange}
++              placeholder="e.g. Cardiologist"
++              required
++              style={inputStyle}
++            />
++          </div>
++
++          {/* EXPERIENCE */}
++          <div style={{ marginBottom: "20px" }}>
++            <label style={labelStyle}>Experience</label>
++
++            <input
++              type="number"
++              name="experience"
++              value={doctor.experience}
++              onChange={handleChange}
++              placeholder="e.g. 10 years"
++              required
++              style={inputStyle}
++            />
++          </div>
++
++          {/* AVAILABLE FROM */}
++          <div style={{ marginBottom: "20px" }}>
++            <label style={labelStyle}>Available From</label>
++
++            <input
++              type="time"
++              name="availableFrom"
++              value={doctor.availableFrom}
++              onChange={handleChange}
++              required
++              style={inputStyle}
++            />
++          </div>
++
++          {/* AVAILABLE TO */}
++          <div style={{ marginBottom: "20px" }}>
++            <label style={labelStyle}>Available To</label>
++
++            <input
++              type="time"
++              name="availableTo"
++              value={doctor.availableTo}
++              onChange={handleChange}
++              required
++              style={inputStyle}
++            />
++          </div>
++
++          {/* IMAGE URL */}
++          <div style={{ marginBottom: "25px" }}>
++            <label style={labelStyle}>Doctor Image URL</label>
++
++            <input
++              type="text"
++              name="imageUrl"
++              value={doctor.imageUrl}
++              onChange={handleChange}
++              placeholder="https://example.com/image.jpg"
++              style={inputStyle}
++            />
++          </div>
++
++          {/* BUTTON */}
++          <button
++            type="submit"
++            style={{
++              width: "100%",
++              background:
++                "linear-gradient(to right, #0ea5e9, #2563eb)",
++              color: "white",
++              border: "none",
++              padding: "14px",
++              borderRadius: "12px",
++              fontSize: "17px",
++              fontWeight: "bold",
++              cursor: "pointer",
++              transition: "0.3s",
++            }}
++          >
++            Add Doctor
++          </button>
++        </form>
++      </div>
++    </div>
++  );
++}
++
++const labelStyle = {
++  display: "block",
++  marginBottom: "8px",
++  fontWeight: "600",
++  color: "#334155",
++};
++
++const inputStyle = {
++  width: "100%",
++  padding: "12px",
++  borderRadius: "10px",
++  border: "1px solid #cbd5e1",
++  fontSize: "15px",
++  outline: "none",
++  boxSizing: "border-box",
++};
++
++export default AddDoctor;
+\ No newline at end of file
