@@ -42,6 +42,8 @@ public class SecurityConfig {
                                 "/api/doctors/**",
                                 "/h2-console/**"
                         ).permitAll()
+                        .requestMatchers("/api/appointments/**")
+                        .authenticated()
 
                         .anyRequest().authenticated()
                 )

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a32aa610-97d3-480b-a32e-f803e76a591d" name="Changes" comment="add initial project files and configurations">
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/1.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/1.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/10.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/10.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/11.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/11.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/12.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/12.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/13.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/13.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/14.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/14.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/2.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/2.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/3.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/3.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/4.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/4.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/5.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/5.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/6.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/6.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/7.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/7.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/8.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/8.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/9.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/9.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/logo.svg" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/Users/koulikmaity/Desktop/Java_project/doctorbooking" value="3BiZjGaIRVQbzfgIr6ecB5pdo1x" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;koulikmaity&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/koulikmaity/doctor_booking.git",
+    "accountId": "78e41391-2d8a-4b29-be1f-d7ac41fa7313"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3BiZjGaIRVQbzfgIr6ecB5pdo1x" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ide.FileNotInSourceRootChecker.no.check": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/koulikmaity/Desktop/Java_project/doctorbooking",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "to.speed.mode.migration.done": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory",
+      "module"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/km/doctorbooking/security" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="doctorbooking" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="doctorbooking" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a32aa610-97d3-480b-a32e-f803e76a591d" name="Changes" comment="" />
+      <created>1774973985848</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774973985848</updated>
+    </task>
+    <task id="LOCAL-00001" summary="feat: add initial project structure with user, doctor, and appointment management">
+      <option name="closed" value="true" />
+      <created>1777395174749</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1777395174750</updated>
+    </task>
+    <task id="LOCAL-00002" summary="bug fixed">
+      <option name="closed" value="true" />
+      <created>1777396668621</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1777396668621</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: add initial project configuration and ignore files">
+      <option name="closed" value="true" />
+      <created>1777488981534</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1777488981534</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add initial project files and configurations">
+      <option name="closed" value="true" />
+      <created>1778181129099</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778181129099</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/doctorbooking_backend" />
+      <path value="$PROJECT_DIR$/doctorbooking-ui" />
+    </ignored-roots>
+    <MESSAGE value="feat: add initial project structure with user, doctor, and appointment management" />
+    <MESSAGE value="bug fixed" />
+    <MESSAGE value="feat: add initial project configuration and ignore files" />
+    <MESSAGE value="feat: cancellation logic and slot decrement done&#10;feat: add initial project configuration and ignore files&#10;Initialize project using Create React App" />
+    <MESSAGE value="add initial project files and configurations" />
+    <option name="LAST_COMMIT_MESSAGE" value="add initial project files and configurations" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
