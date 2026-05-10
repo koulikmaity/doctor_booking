@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
 import { getAllDoctors } from "../services/doctorService";
 
 function DoctorList() {
     const [doctors, setDoctors] = useState([]);
+    // ✅ prevent duplicate API call
+    const fetched = useRef(false);
 
     useEffect(() => {
+        // ✅ already fetched
+        if (fetched.current) return;
+
+        fetched.current = true;
         fetchDoctors();
     }, []);
 
