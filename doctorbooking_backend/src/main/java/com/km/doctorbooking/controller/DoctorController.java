@@ -45,11 +45,69 @@ public class DoctorController {
     }
 
     // 📄 Get all doctors
-    @GetMapping
-    public List<DoctorResponse> getAllDoctors() {
+//    @GetMapping
+//    public List<DoctorResponse> getAllDoctors() {
+//
+//        return doctorService.getAllDoctors()
+//                .stream()
+//                .map(doc -> new DoctorResponse(
+//                        doc.getId(),
+//                        doc.getName(),
+//                        doc.getSpecialization(),
+//                        doc.getExperience(),
+//                        doc.getAvailableFrom(),
+//                        doc.getAvailableTo(),
+//                        doc.getImageUrl()
+//
+//                ))
+//                .collect(Collectors.toList());
+//    }
 
-        return doctorService.getAllDoctors()
-                .stream()
+
+
+
+
+
+    // 📄 Get doctors with filters
+    @GetMapping
+    public List<DoctorResponse> getDoctors(
+
+            @RequestParam(required = false)
+            String specialization,
+
+            @RequestParam(required = false)
+            Integer experience
+
+    ) {
+
+        List<Doctor> doctors = doctorService.getAllDoctors();
+//        System.out.println(
+//                "SPECIALIZATION: " + specialization
+//        );
+
+        // ✅ specialization filter
+        if (specialization != null && !specialization.isEmpty()) {
+
+            doctors = doctors.stream()
+                    .filter(doc ->
+                            doc.getSpecialization()
+                                    .equalsIgnoreCase(
+                                            specialization
+                                    ))
+                    .toList();
+        }
+
+        // ✅ experience filter
+        if (experience != null) {
+
+            doctors = doctors.stream()
+                    .filter(doc ->
+                            doc.getExperience() >= experience
+                    )
+                    .toList();
+        }
+
+        return doctors.stream()
                 .map(doc -> new DoctorResponse(
                         doc.getId(),
                         doc.getName(),
@@ -58,10 +116,19 @@ public class DoctorController {
                         doc.getAvailableFrom(),
                         doc.getAvailableTo(),
                         doc.getImageUrl()
-
                 ))
                 .collect(Collectors.toList());
     }
+
+
+    
+
+
+
+
+
+
+
 
     // 🔍 Get doctor by ID
     @GetMapping("/{id}")
@@ -86,4 +153,5 @@ public class DoctorController {
         doctorService.deleteDoctor(id);
         return "Doctor deleted successfully";
     }
+
 }

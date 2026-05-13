@@ -1,14 +1,20 @@
 import API from "./api";
 
 // 🧑‍⚕️ Get all doctors
-export const getAllDoctors = () => {
-  return API.get("/doctors");
+// export const getAllDoctors = () => {
+//   return API.get("/doctors");
+// };
+
+export const getAllDoctors = ( filters = {} ) => {
+  return API.get( "/doctors", { params: filters,});
 };
 
 // 🔍 Get doctor by ID
 export const getDoctorById = (id) => {
   return API.get(`/doctors/${id}`);
 };
+
+
 
 // ➕ Add doctor
 export const addDoctor = (data) => {

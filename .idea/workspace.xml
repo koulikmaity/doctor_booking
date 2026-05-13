@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a32aa610-97d3-480b-a32e-f803e76a591d" name="Changes" comment="add initial project files and configurations">
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/0.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/1.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/1.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/10.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/10.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/11.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/11.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/12.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/12.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/13.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/13.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/14.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/14.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/2.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/2.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/3.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/3.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/4.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/4.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/5.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/5.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/6.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/6.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/7.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/7.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/8.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/8.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/9.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/9.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/logo.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/pages/DoctorList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/pages/DoctorList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/pages/ExploreDoctors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/pages/ExploreDoctors.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking-ui/src/services/doctorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking-ui/src/services/doctorService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking_backend/src/main/java/com/km/doctorbooking/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking_backend/src/main/java/com/km/doctorbooking/controller/DoctorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doctorbooking_backend/target/classes/com/km/doctorbooking/controller/DoctorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/doctorbooking_backend/target/classes/com/km/doctorbooking/controller/DoctorController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,12 +42,12 @@
     &quot;assignee&quot;: &quot;koulikmaity&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/koulikmaity/doctor_booking.git",
-    "accountId": "78e41391-2d8a-4b29-be1f-d7ac41fa7313"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/koulikmaity/doctor_booking.git&quot;,
+    &quot;accountId&quot;: &quot;78e41391-2d8a-4b29-be1f-d7ac41fa7313&quot;
   }
-}]]></component>
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -92,7 +78,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ide.FileNotInSourceRootChecker.no.check": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "backend-feature",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/koulikmaity/Desktop/Java_project/doctorbooking",
