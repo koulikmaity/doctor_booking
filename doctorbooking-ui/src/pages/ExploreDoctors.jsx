@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DoctorCard from "../components/DoctorCard";
 import { getAllDoctors } from "../services/doctorService";
+import { useSearchParams } from "react-router-dom";
 
 function ExploreDoctors() {
 
+const [allDoctors, setAllDoctors] = useState([]);
   const [doctors, setDoctors] = useState([]);
 
-  const [selectedSpecialization, setSelectedSpecialization] =
-    useState("");
+  const [selectedSpecialization, setSelectedSpecialization] = useState("");
 
   const [minExperience, setMinExperience] = useState("");
 
@@ -15,63 +16,130 @@ function ExploreDoctors() {
 
   const [maxFees, setMaxFees] = useState("");
 
+  const [allSpecializations, setAllSpecializations] = useState([]);
+
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+
+
+
+  // ---------------- LOAD MASTER DATA (dropdown only) ----------------
   useEffect(() => {
-    fetchDoctors();
+    const loadInitialData = async () => {
+      const res = await getAllDoctors(); // NO FILTERS
+
+      const specs = [...new Set(res.data.map(d => d.specialization))];
+      setAllSpecializations(specs);
+    };
+
+    loadInitialData();
   }, []);
 
-  const fetchDoctors = async () => {
-    try {
+  // ---------------- SYNC URL → STATE ----------------
+  useEffect(() => {
+    const spec = searchParams.get("specialization") || "";
+    const exp = searchParams.get("experience") || "";
+    const fees = searchParams.get("fees") || "";
+    const avail = searchParams.get("availability") || "";
 
-      const res = await getAllDoctors();
+    setSelectedSpecialization(spec);
+    setMinExperience(exp);
+    setMaxFees(fees);
+    setAvailability(avail);
 
-      const updatedDoctors = res.data.map((doc) => ({
+    fetchDoctors(spec, exp, fees, avail);
+  }, [searchParams]);
+
+  // ---------------- FETCH ----------------
+  const fetchDoctors = async (spec, exp, fees, avail) => {
+    const params = {};
+
+    if (spec) params.specialization = spec;
+    if (exp) params.experience = exp;
+    if (fees) params.maxFees = fees;
+    if (avail) params.availability = avail;
+
+    const res = await getAllDoctors(params);
+
+    setDoctors(
+      res.data.map(doc => ({
         ...doc,
         fees: doc.experience * 50,
-      }));
-
-      setDoctors(updatedDoctors);
-
-    } catch (error) {
-      console.error(error);
-    }
+      }))
+    );
   };
 
-  // 🔥 FILTER LOGIC
-  const filteredDoctors = doctors.filter((doc) => {
+  // ---------------- UPDATE URL ----------------
+  const updateURL = (filters) => {
+    const params = {};
 
-  const specializationMatch =
-    !selectedSpecialization ||
-    doc.specialization
-      .toLowerCase()
-      .includes(
-        selectedSpecialization.toLowerCase()
-      );
+    if (filters.specialization) params.specialization = filters.specialization;
+    if (filters.experience) params.experience = filters.experience;
+    if (filters.fees) params.fees = filters.fees;
+    if (filters.availability) params.availability = filters.availability;
 
-  const experienceMatch =
-    !minExperience ||
-    doc.experience >= Number(minExperience);
+    setSearchParams(params);
+  };
 
-  // ✅ TIME FILTER FIX
-  const availabilityMatch =
-    !availability ||
-    (
-      availability.padStart(5, "0") >=
-        doc.availableFrom.padStart(5, "0") &&
-      availability.padStart(5, "0") <=
-        doc.availableTo.padStart(5, "0")
-    );
+  // ---------------- HANDLERS ----------------
+  const handleSpecialization = (value) => {
+    setSelectedSpecialization(value);
 
-  const feesMatch =
-    !maxFees ||
-    doc.fees <= Number(maxFees);
+    updateURL({
+      specialization: value,
+      experience: minExperience,
+      fees: maxFees,
+      availability,
+    });
+  };
 
-  return (
-    specializationMatch &&
-    experienceMatch &&
-    availabilityMatch &&
-    feesMatch
-  );
-});
+  const handleExperience = (value) => {
+    setMinExperience(value);
+
+    updateURL({
+      specialization: selectedSpecialization,
+      experience: value,
+      fees: maxFees,
+      availability,
+    });
+  };
+
+  const handleFees = (value) => {
+    setMaxFees(value);
+
+    updateURL({
+      specialization: selectedSpecialization,
+      experience: minExperience,
+      fees: value,
+      availability,
+    });
+  };
+
+  const handleAvailability = (value) => {
+    setAvailability(value);
+
+    updateURL({
+      specialization: selectedSpecialization,
+      experience: minExperience,
+      fees: maxFees,
+      availability: value,
+    });
+  };
+
+  // ---------------- RESET ----------------
+  const resetFilters = () => {
+    setSearchParams({}); // ONLY THIS triggers everything cleanly
+  };
+
+
+
+
+
+
+
+
+
 
   return (
     <div style={styles.page}>
@@ -107,20 +175,12 @@ function ExploreDoctors() {
               style={styles.input}
               value={selectedSpecialization}
               onChange={(e) =>
-                setSelectedSpecialization(e.target.value)
+                handleSpecialization(e.target.value)
               }
             >
               <option value="">All</option>
-
-              {[
-                ...new Set(
-                  doctors.map((doc) => doc.specialization)
-                ),
-              ].map((specialization) => (
-                <option
-                  key={specialization}
-                  value={specialization}
-                >
+              {allSpecializations.map((specialization) => (
+                <option key={ specialization} value={specialization} >
                   {specialization}
                 </option>
               ))}
@@ -139,7 +199,7 @@ function ExploreDoctors() {
               style={styles.input}
               value={minExperience}
               onChange={(e) =>
-                setMinExperience(e.target.value)
+                handleExperience(e.target.value)
               }
             />
           </div>
@@ -156,7 +216,7 @@ function ExploreDoctors() {
               style={styles.input}
               value={maxFees}
               onChange={(e) =>
-                setMaxFees(e.target.value)
+                handleFees(e.target.value)
               }
             />
           </div>
@@ -180,12 +240,7 @@ function ExploreDoctors() {
           {/* RESET */}
           <button
             style={styles.resetBtn}
-            onClick={() => {
-              setSelectedSpecialization("");
-              setMinExperience("");
-              setAvailability("");
-              setMaxFees("");
-            }}
+            onClick={resetFilters}
           >
             Reset Filters
           </button>
@@ -200,12 +255,12 @@ function ExploreDoctors() {
             </h2>
 
             <p>
-              {filteredDoctors.length} doctors found
+              {doctors.length} doctors found
             </p>
           </div>
 
           <div style={styles.container}>
-            {filteredDoctors.map((doc) => (
+            {doctors.map((doc) => (
               <div key={doc.id}>
                 <DoctorCard doctor={doc} />
               </div>
