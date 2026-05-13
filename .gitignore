@@ -1,3 +1,17 @@
 # Frontend
 doctorbooking-ui/node_modules/
-doctorbooking-ui/.cache/
+doctorbooking-ui/build/
+
+# Backend
+doctorbooking_backend/target/
+*.class
+
+# Cache
+.cache/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
