@@ -1,17 +1,38 @@
-# Frontend
+# =========================
+# Frontend (React)
+# =========================
 doctorbooking-ui/node_modules/
 doctorbooking-ui/build/
+doctorbooking-ui/dist/
+doctorbooking-ui/.cache/
 
-# Backend
+# =========================
+# Backend (Spring Boot)
+# =========================
 doctorbooking_backend/target/
 *.class
+*.jar
+*.war
 
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
 # Cache
+# =========================
 .cache/
+**/.cache/
 
-# IDE
+# =========================
+# IDE files
+# =========================
 .idea/
 .vscode/
+*.iml
 
-# OS
+# =========================
+# OS files
+# =========================
 .DS_Store
