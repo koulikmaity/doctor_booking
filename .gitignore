@@ -1,3 +1,48 @@
-# Frontend
-doctorbooking_ui/node_modules/
-doctorbooking_ui/.env
+# =========================
+# Frontend (React)
+# =========================
+doctorbooking-ui/node_modules/
+doctorbooking-ui/build/
+doctorbooking-ui/.cache/
+doctorbooking-ui/.eslintcache
+
+# Frontend Environment Files
+doctorbooking-ui/.env
+doctorbooking-ui/.env.local
+doctorbooking-ui/.env.development.local
+doctorbooking-ui/.env.test.local
+doctorbooking-ui/.env.production.local
+
+# =========================
+# Backend (Spring Boot)
+# =========================
+doctorbooking_backend/target/
+*.class
+
+# Backend Environment / Config
+doctorbooking_backend/.env
+
+# =========================
+# IDE Files
+# =========================
+.idea/
+.vscode/
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Cache
+# =========================
+.cache/doctorbooking-ui/node_modules/
