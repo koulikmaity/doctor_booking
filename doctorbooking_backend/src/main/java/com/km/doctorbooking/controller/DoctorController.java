@@ -154,4 +154,12 @@ public class DoctorController {
         return "Doctor deleted successfully";
     }
 
+
+    @GetMapping("/search")
+    public List<Doctor> searchDoctors( @RequestParam String query ) {
+
+        return doctorService.searchDoctors(query);
+    }
+
+
 }
