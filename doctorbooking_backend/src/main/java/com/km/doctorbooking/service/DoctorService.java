@@ -29,4 +29,14 @@ public class DoctorService {
     public void deleteDoctor(Long id) {
         doctorRepo.deleteById(id);
     }
+
+    public List<Doctor> searchDoctors(String search) {
+
+        // if empty search → return all
+        if (search == null || search.trim().isEmpty()) {
+            return doctorRepo.findAll();
+        }
+
+        return doctorRepo.searchDoctors(search);
+    }
 }

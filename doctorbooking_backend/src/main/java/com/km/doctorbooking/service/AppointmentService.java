@@ -1,4 +1,4 @@
-package com.km.doctorbooking.service;
+ package com.km.doctorbooking.service;
 
 import com.km.doctorbooking.entity.Appointment;
 import com.km.doctorbooking.entity.Doctor;
